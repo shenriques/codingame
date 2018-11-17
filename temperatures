@@ -1,0 +1,43 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/** 
+  * Find the temperature closest to 0 given a user input of temperatures (approx) -200 : 200
+ **/
+class Solution {
+
+	public static void main(String args[]) 
+	{
+		Scanner input = new Scanner(System.in); 
+
+		int total = input.nextInt(); 
+    input.nextLine();
+    
+    // "provided there's at least one number"
+		if (total > 0) 
+		{
+            int closestTemp = closestToZero(input, total);
+            System.out.println(closestTemp);
+		} else {
+            System.out.println(0);
+		}
+
+	}
+
+
+	public static int closestToZero(Scanner temps, int totalTemps) 
+	{
+	    // set as biggest an int can be, just as something to compare
+		int closest = Integer.MAX_VALUE; 
+		int currentTemp;
+
+		for (int i = 0 ; i < totalTemps ; i++) 
+		{
+			currentTemp = temps.nextInt();
+			closest = (Math.abs(currentTemp) < Math.abs(closest) || currentTemp == Math.abs(closest) ? currentTemp : closest);
+		}
+
+		return closest;
+	}
+}
